@@ -78,8 +78,8 @@ En este sentido esta seria la configuración de los distintos servicios :
 11. Verificar todo con el comando  ***nginx -t***
 12. Por último reiniciar el servidor Nginx y verificar que todo funciona 
     1.  Si se navega por IP debe responder la pagina por defecto 
-    2.  Si se navega ***https://www.jhondoe.com***, debe mostrarse la página que se creo en el paso 10 (el navegador no podrá verificar la autenticidad del certificado auto firmado por lo que se debe incluir como excepción en el navegador)
-    3.  Si se navega ***http://www.jhondoe.com***, debe mostrarse la página que se creo en el paso 10
+    2.  Si se navega ***https://www.jhondoe.com***, debe mostrarse la página que se creó en el paso 10 (el navegador no podrá verificar la autenticidad del certificado auto firmado por lo que se debe incluir como excepción en el navegador)
+    3.  Si se navega ***http://www.jhondoe.com***, debe mostrarse la página que se creó en el paso 10
     
 
 ## Referencias 

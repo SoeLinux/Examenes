@@ -1,4 +1,4 @@
-#Lista de Dominios por alumno
+### Lista de Dominios por alumno
 
 
 | Nombre                                    | Domino                | hostName                       | mail del alumno                    |

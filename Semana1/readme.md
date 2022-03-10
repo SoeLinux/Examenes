@@ -86,7 +86,9 @@ En este sentido esta seria la configuración de los distintos servicios :
 Se pueden usar las referencia de configuración siguientes: 
 
 <https://www.digitalocean.com/community/tutorials/how-to-setup-dnssec-on-an-authoritative-bind-dns-server-2>
+
 <https://www.ibm.com/docs/es/oala/1.3.5?topic=SSPFMY_1.3.5/com.ibm.scala.doc/config/iwa_cnf_lgsth_lfa_t.html>
+
 <https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-20-04-1>
 
 

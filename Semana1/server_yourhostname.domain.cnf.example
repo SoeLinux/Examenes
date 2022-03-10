@@ -1,0 +1,15 @@
+#
+# yourhostname.domain
+#
+
+[ req ]
+prompt                  = no
+distinguished_name      = server_distinguished_name
+
+[ server_distinguished_name ]
+commonName              = yourhostname.domain
+stateOrProvinceName     = OH
+countryName             = US
+emailAddress            = trevorj@nowhere.com
+organizationName        = Trevorjs Car Audio Shop
+organizationalUnitName  = IT Department

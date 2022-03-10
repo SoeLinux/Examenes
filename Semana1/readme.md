@@ -71,7 +71,7 @@ En este sentido esta seria la configuración de los distintos servicios :
 7. En el paso 6 ya se crearon la llave privada y el certificado del servidor ***www.jhondoe.com***  estos deben ser adecuados para que el NGINX los utilice :
    1. Quitar el password a la llave privada
    2. Crear un archivo crt a partir de el archivo pem
-   3. Y crear el archivo **jhondoe.crt* (boundle), con la unión del crt de mi dominio y el crt del CA 
+   3. Y crear el archivo **jhondoe.crt** (boundle), con la unión del crt de mi dominio y el crt del CA 
 8. Configurar los snippets (pedazos) de configuración ssl (ssl-params.conf) y path de los certificados (jhondoe.conf)
 9. Configurar el virtual host de nginx para el nombre de servidor ***www.jhondoe.com***, con ayuda de los snippets
 10. Crear una página html de bienvenida (hola mundo) que responda a la petición ***https://www.jhondoe.com***

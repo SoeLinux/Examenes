@@ -1,0 +1,25 @@
+# Last Modified: Fri Mar 25 20:48:10 2022
+#include <tunables/global>
+
+/usr/sbin/nginx {
+#include <abstractions/base>
+#include <abstractions/lxc/container-base>
+capability dac_override,
+capability dac_read_search,
+capability net_bind_service,
+capability setgid,
+capability setuid,
+deny /var/www/html/unsafe/* r,
+/var/www/html/* r,
+/etc/group r,
+/etc/nginx/conf.d/ r,
+/etc/nginx/mime.types r,
+/etc/nginx/nginx.conf r,
+/etc/nsswitch.conf r,
+/etc/passwd r,
+/etc/ssl/openssl.cnf r,
+/run/nginx.pid rw,
+/usr/sbin/nginx mr,
+/var/log/nginx/access.log w,
+/var/log/nginx/error.log w,
+}

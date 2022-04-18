@@ -220,7 +220,10 @@ Con todas las piezas listas solo queda ejecutar Terraform
 son cuatro comandos los mas utilizados:
 ``terraform init`` (que prepara todo el ambiente), ``terraform plan`` que se encarga de crear un plan de ejecución, luego ``terraform apply`` que aplica la configuración y por último ``terraform destroy`` que destruye todo lo echo
 
- 
+5. Se debe Crear un repositorio git llamado examen1 dentro de su cuenta de github, en este repositorio debe estar toda la configuración nesaria para que se pueda reproducir este ejercicio en cualquier ambiente. 
+
+
+
 
 
 

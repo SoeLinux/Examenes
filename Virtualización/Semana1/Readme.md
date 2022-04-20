@@ -3,7 +3,7 @@
 ## Instrucción 
 El propósito del primer Examen es introducir al alumno en la teología de Infraestructura como código (IAC).
 
-En este sentido se debe prepara una máquina virtual con sistema operativo ***Ubuntu Server*** 20.04 LTS <https://ubuntu.com/download/server> con las siguientes características: 
+En este sentido se debe prepara una máquina virtual con sistema operativo ***Ubuntu Server*** 18.04 LTS <https://ubuntu.com/download/server> con las siguientes características: 
 
 - Memoria RAM 4G - 8G
 - 4 CPU
@@ -14,29 +14,30 @@ En este sentido se debe prepara una máquina virtual con sistema operativo ***Ub
  # Detalle de configuración
 
  ## KVM 
- 1. Se debe instalar KVM (dentro de la maquina) virtual, por lo que se debe habilitar la virtualización anidada.
+ Para los estudiantes que tienen como sistema operativo anfitrión una distribución de Linux "moderna" kernel >= 4.4 pueden saltar a el punto **2**
 
- Para Procesadores Intel.
+ 1. Se debe instalar KVM (dentro de la maquina) virtual, por lo que se debe habilitar la virtualización anidada en el anfitrión (host) Se ha podido comprobar con hyper-V que se puede habilitar y utilizar correctamente, en VirtualBox no funciona bien (es una función Beta) y en Mac es posible que la última versión de vmware Fusion funcione correctamente (Apple cambio algunas partes de la base de su soporte de virtualización por el cambio de procesadores ).
+ 
+ En hyper-V se debe habilitar la virtualización anidada (de acuerdo a [https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization))
+
+ En una consola de PowerShell (en modo administrador se debe correr) con la maquina virtual apagada:
 
  ```
- echo 'options kvm ignore_msrs=y' >> /etc/modprobe.d/kvm-intel.conf       
- echo 'options kvm-intel nested=Y ept=Y' >> /etc/modprobe.d/kvm-intel.conf 
-
+ Set-VMProcessor -VMName UbuntuServer -ExposeVirtualizationExtensions $true 
  ```
-Para procesadores AMD
+Donde UbuntuServer es el nombre de la maquina virtual
 
-```
-#echo 'options kvm-amd nested=Y ept=Y' >> /etc/modprobe.d/kvm-amd.conf 
-```   
-Luego se debe reiniciar la maquina virtual.
 
 2. Verificar que la maquina virtual tiene las extensiones de virtualización asistida por Hardware.
 ```
+egrep -c '(vmx|svm)' /proc/cpuinfo
+4
+```   
+Debe salir mayor que cero
+Luego como siempre se deben actualizar toda la distro.
+```
 sudo apt update
 sudo apt upgrade
-sudo apt install cpu-cheker
-INFO: /dev/kvm exists
-KVM acceleration can be used
 ```
 Luego se puede instalar KVM
 
@@ -71,7 +72,6 @@ wget https://releases.hashicorp.com/terraform/${TER_VER}/terraform_${TER_VER}_li
 ```   
 Una vez que, el archivo este en la maquina virtual, es necesario copiar el binario en /usr/local/bin
 ```
-apt install unzip
 unzip terraform_${TER_VER}_linux_amd64.zip
 Archive:  terraform_1.1.8_linux_amd64.zip
   inflating: terraform  
@@ -214,13 +214,24 @@ users:
     shell: /bin/bash
     groups: sudo
 ```
-
+Por último para conseguir la imagen de cloud de Ubuntu Xenial :
+```
+wget https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
+```
 4.  Ejecutar Terraform
 Con todas las piezas listas solo queda ejecutar Terraform
 son cuatro comandos los mas utilizados:
 ``terraform init`` (que prepara todo el ambiente), ``terraform plan`` que se encarga de crear un plan de ejecución, luego ``terraform apply`` que aplica la configuración y por último ``terraform destroy`` que destruye todo lo echo
 
 5. Se debe Crear un repositorio git llamado examen1 dentro de su cuenta de github, en este repositorio debe estar toda la configuración nesaria para que se pueda reproducir este ejercicio en cualquier ambiente. 
+6. Para estandarizar la entrega de los repositorios se debe crear un último archivo de configuración ***"alumno.conf"*** con la siguiente contenido
+
+```
+Alumno: Jorge Antonio Verastegui
+Email: diplomado@verastegui.net
+github:https://github.com/SoeLinux/Examenes.git
+```
+
 
 
 

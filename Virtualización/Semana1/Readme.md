@@ -246,7 +246,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-Esto crea el archivo ~/.ssh/id_rsa.pub y para copiar el contenido se puede usar redireccionamiento:
+Esto crea el archivo ~/.ssh/id_rsa.pub y para copiar el contenido se puede usar re-direccionamiento:
 ```
 cat ~/.ssh/id_rsa_pub >> cloud_init.cfg
 ```
@@ -294,13 +294,4 @@ Alumno: Jorge Antonio Verastegui
 Email: diplomado@verastegui.net
 github:https://github.com/SoeLinux/Examenes.git
 ```
-
-
-
-
-
-
-
-
-
 

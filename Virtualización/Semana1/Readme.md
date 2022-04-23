@@ -158,6 +158,7 @@ resource "libvirt_domain" "xenial" {
 
   network_interface {
     network_name = "default" # List networks with virsh net-list
+    wait_for_lease = true
   }
 
   disk {
@@ -180,9 +181,9 @@ resource "libvirt_domain" "xenial" {
 }
 
 # Output Server IP
-output "ip" {
-  value = "${libvirt_domain.xenial.network_interface.0.addresses.0}"
-}
+  output "ip" {
+    value = "${libvirt_domain.xenial.network_interface.0.addresses.0}"
+ }
 ```
 
 Y el último archivo es cloud_init.cfg
@@ -201,15 +202,16 @@ Y el último archivo es cloud_init.cfg
 # provided.
 #
 # Note: Content strings here are truncated for example purposes.
+# se debe reamplazar jorge por su nombre de dominio del anterior modulo sin el .com
 ssh_pwauth: True
 chpasswd:
   list: |
-     root: sesamo
+     root:sesamo
+     jorge:sesamo  
   expire: False
 
 users:
   - name: jorge # Change me (nombre del dominio sin .com)
-    passwd: sesamo
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     shell: /bin/bash
     groups: sudo

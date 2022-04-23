@@ -253,6 +253,8 @@ cat ~/.ssh/id_rsa_pub >> cloud_init.cfg
 Que copia el final del archivo la llave pública. 
 El archivo final debería ser:
 ```
+#cloud-config
+# vim: syntax=yaml
 #
 # ***********************
 # 	---- for more examples look at: ------

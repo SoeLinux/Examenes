@@ -218,6 +218,67 @@ Por último para conseguir la imagen de cloud de Ubuntu Xenial :
 ```
 wget https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
 ```
+Nota: 
+En algunos ambientes el paso del contraseña no funciona, por lo que se puede usar el método alternativo de llaves ssh (que es más seguro)
+
+para generar las llaves se utiliza
+
+```
+ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/jorge/.ssh/id_rsa):
+Your public key has been saved in /home/jorge/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:dBhDli7sh/5MR3E+ue9Wp/zWvmTnzDxFKo5b2KjbL9k jorge@c1
+The key's randomart image is:
++---[RSA 3072]----+
+|       .=.       |
+|       ..+       |
+|     . .o o .    |
+|      o... + .  .|
+|     . oS . +  o |
+|      o .. +.o. +|
+|     . .. +=+o ==|
+|      .o ++.E.**+|
+|       .=.o+.oo=X|
++----[SHA256]-----+
+```
+
+Esto crea el archivo ~/.ssh/id_rsa.pub y para copiar el contenido se puede usar redireccionamiento:
+```
+cat ~/.ssh/id_rsa_pub >> cloud_init.cfg
+```
+Que copia el final del archivo la llave pública. 
+El archivo final debe ria ser:
+```
+#
+# ***********************
+# 	---- for more examples look at: ------
+# ---> https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+# ******************************
+#
+# This is the configuration syntax that the write_files module
+# will know how to understand. encoding can be given b64 or gzip or (gz+b64).
+# The content will be decoded accordingly and then written to the path that is
+# provided.
+#
+# Note: Content strings here are truncated for example purposes.
+ssh_pwauth: True
+chpasswd:
+  list: |
+     root:sesamo
+  expire: False
+
+users:
+  - name: jorge # Change me  (nombre del dominio sin .com)
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDE6KtvQDDhTVG1IpLzxnCck4Cjhq8E0QY1AyqazEZ0ZHpOhVGBUApga/fCmvnI5wgXOTWpLINXUHKItKNA1y10es112a9VpA+OH2rZ6FiUVtxQLGpMdlCtSlXNqr5AQ7djpUrT/167qeKkHkfq2tnolRbfFmGkG8L/Vn2wGHg/WjOAH95WH/vn5SKMN5HQwb3RuihoIF8ge2+8pi+APSnS7Npqjq6jirpzL+DEFfskJOyFkbsJX868g1LVCDqZUsfOBRlot+hTfeXIFUfZfptT1jUreJUp6ASmXaeOul45IOtntFZbsqxKJ3eceFqILGTJ+j4zCg08/clYPwMpQUBkXeKWrM9oWpSE+3AxAf1vZ0CdNAd6AP8nTGA3VWiGPdBvS1+lpwAVrkO/FMdueLpmSs3gqU3VVBsaEwSNfaw0Fd/0lJzUe1fFHkrsXt8k8rMm7wthd+WVGHO3qIQtD7UC4upiGqjwHXyTb+a+NYOnnzMCIa0+VOKtJ8JmuhUR6MU= jorge@c1
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    shell: /bin/bash
+    groups: sudo
+```
+Note que el contenido de la variable  ssh_authorized_keys: es un array de un solo componente (el contenido de ~/.ssh/id_rsa_pub) precedido de un guion (-)
+ 
 4.  Ejecutar Terraform
 Con todas las piezas listas solo queda ejecutar Terraform
 son cuatro comandos los mas utilizados:

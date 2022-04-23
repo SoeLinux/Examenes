@@ -251,7 +251,7 @@ Esto crea el archivo ~/.ssh/id_rsa.pub y para copiar el contenido se puede usar 
 cat ~/.ssh/id_rsa_pub >> cloud_init.cfg
 ```
 Que copia el final del archivo la llave pública. 
-El archivo final debe ria ser:
+El archivo final debería ser:
 ```
 #
 # ***********************

@@ -33,7 +33,7 @@ Donde UbuntuServer es el nombre de la maquina virtual
 egrep -c '(vmx|svm)' /proc/cpuinfo
 4
 ```   
-Debe salir mayor que cero
+Debe salir un valor mayor que cero
 Luego como siempre se deben actualizar toda la distro.
 ```
 sudo apt update
@@ -207,7 +207,7 @@ ssh_pwauth: True
 chpasswd:
   list: |
      root:sesamo
-     jorge:sesamo  
+     jorge:sesamo
   expire: False
 
 users:

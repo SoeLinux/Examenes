@@ -1,4 +1,4 @@
-# Examen Semana 2 
+# Examen Semana 4 
 
 ## Instrucción
 El objeto de la práctica es crear una máquina virtual, y configura-la de forma automatizada , con la ayuda de Terraform y Ansible. 

@@ -357,10 +357,10 @@ En este archivo tenemos la referencia a ../authelia, que es el directorio donde 
 Este directorio debe tener el siguiente contenido , (también se incluye en el repositorio)
 ```
 authelia
-├── authelia
-│   ├── configuration.yml
-│   └── users_database.yml
-└── docker-compose.yml
+|   authelia
+|   |-- configuration.yml
+|   |-- users_database.yml
+|-- docker-compose.yml
 ```
 En el archivo configuration.yml se debe cambiar los parámetros de correo electrolito acorde con una cuenta gratis de <https://mailtrap.io/> 
 ```
